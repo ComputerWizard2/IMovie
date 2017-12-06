@@ -186,9 +186,9 @@
                         </a>
                         <ul class="tpl-left-nav-sub-menu">
                             <li>
-                                <a href="table-font-list.html">
+                                <a href="javascrip:void(0);" >
                                     <i class="am-icon-angle-right"></i>
-                                    <span>文字表格</span>
+                                    <span id="abc">文字表格</span>
                                     <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
                                 </a>
 
@@ -253,7 +253,7 @@
 
 
 
-        <div class="tpl-content-wrapper" id="abc">
+        <div class="tpl-content-wrapper" >
             <div class="tpl-content-page-title">
                 Amaze UI 首页组件
             </div>
