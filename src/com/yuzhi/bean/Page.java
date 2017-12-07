@@ -4,11 +4,20 @@ import java.util.List;
 
 public class Page {
 
-	private int pageSize;// 叶号
+	private int pageSize;// 页号
 	private int currrentPage;// 当前页
-	private int MaxCount;
-	private List<MovieTable> Movies;
-	private int PageSum;
+	private int MaxCount;// 最大页数
+	private List<MovieTable> Movies; // 每页的电影信息
+	private int PageSum;// 总页数
+	private int row;// 数据表中的总行数
+
+	public int getRow() {
+		return row;
+	}
+
+	public void setRow(int row) {
+		this.row = row;
+	}
 
 	public int getPageSum() {
 		return PageSum;
