@@ -89,7 +89,7 @@ public class MovieDaoImp implements MovieTableDao {
 		try {
 
 			connection = JdbcUtil.getConnection();
-			preparestament = connection.prepareStatement("delete from movietable where id=?");
+			preparestament = connection.prepareStatement("delete  from movietable where id=?");
 			preparestament.setInt(1, id);
 			int i = preparestament.executeUpdate();
 			if (i > 0) {
@@ -100,6 +100,69 @@ public class MovieDaoImp implements MovieTableDao {
 			e.printStackTrace();
 		} finally {
 			JdbcUtil.closeResourse(connection, preparestament, resultSet);
+		}
+		return false;
+	}
+
+	@Override
+	public boolean insertData(MovieTable movieTable) {
+		// connection = JdbcUtil.getConnection();
+		// preparestament = connection.prepareStatement("");
+		return false;
+	}
+
+	@Override
+	public MovieTable findOne(int id) {
+		try {
+			connection = JdbcUtil.getConnection();
+			preparestament = connection.prepareStatement("select * from movietable where id =?");
+			preparestament.setInt(1, id);
+			resultSet = preparestament.executeQuery();
+			MovieTable movieTable = new MovieTable();
+			if (resultSet.next()) {
+				movieTable.setId(id);
+				movieTable.setMovieName(resultSet.getString(2));
+				;
+				movieTable.setTime(resultSet.getString(3));
+				movieTable.setUrl(resultSet.getString(4));
+				movieTable.setImagePath(resultSet.getString(5));
+				movieTable.setSaveImagePath(resultSet.getString(6));
+				movieTable.setScore(resultSet.getFloat(7));
+				movieTable.setStatus(resultSet.getInt(8));
+				movieTable.setSource(resultSet.getString(9));
+
+			}
+			return movieTable;
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.closeResourse(connection, preparestament, resultSet);
+		}
+
+		return null;
+	}
+
+	@Override
+	public boolean updateMovie(MovieTable movieTable) {
+		// 访问数据库对数据进行更新操作
+		try {
+			connection = JdbcUtil.getConnection();
+			preparestament = connection.prepareStatement("update movietable set imagepath=?, url=?, score=? ");
+			preparestament.setString(1, movieTable.getImagePath());
+			preparestament.setString(2, movieTable.getUrl());
+			preparestament.setFloat(3, movieTable.getScore());
+			int executeUpdate = preparestament.executeUpdate();
+			if (executeUpdate > 0) {
+				return true;
+
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.closeResourse(connection, preparestament, null);
 		}
 		return false;
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yuzhi.bean.MovieTable;
 import com.yuzhi.bean.Page;
+import com.yuzhi.dao.MovieTableDao;
 import com.yuzhi.daoImpl.MovieDaoImp;
 import com.yuzhi.service.GetDataService;
 
@@ -51,6 +52,27 @@ public class GetDataServiceImpl implements GetDataService {
 	public boolean deleteMovie(int id) {
 		// 调用dao层的命令进行删除
 		boolean b = movieDaoImp.deleteDate(id);
+		if (b) {
+			return true;
+
+		}
+
+		return false;
+	}
+
+	@Override
+	public MovieTable findOne(int id) {
+		// 调用dao的命令进行对象的查找
+		MovieTableDao movieTableDao = new MovieDaoImp();
+		MovieTable one = movieTableDao.findOne(id);
+
+		return one;
+	}
+
+	@Override
+	public boolean updateMovie(MovieTable movieTable) {
+		// 调用到曾的方法进行实现数据的更新
+		boolean b = movieDaoImp.updateMovie(movieTable);
 		if (b) {
 			return true;
 

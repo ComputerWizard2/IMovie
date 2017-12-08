@@ -238,13 +238,13 @@
 								
 									<div class="am-btn-toolbar">
 										<!-- 对电影进行编辑的按钮 -->
-											<button type="button"
-												class="am-btn am-btn-default am-btn-secondary" onclick="edit(${movie.id})">
+											<button 
+												class="am-btn am-btn-default am-btn-secondary" name="movieeditname" id="${movie.id}">
 												<span class="am-icon-edit"></span> 编辑
 											</button>
 										
-										<button type="button" onclick="delete1(${movie.id})"
-												class="am-btn am-btn-default am-btn-danger" id="deletemovie">
+										<button 	name="moviedeletename" 
+												class="am-btn am-btn-default am-btn-danger" id="${movie.id}">
 												<span class="am-icon-trash-o"></span> 删除
 											</button>
 										</div>
@@ -284,6 +284,7 @@
 
 
 	<script type="text/javascript">
+	/* 增加 */
 	$(function (){
 		$("#editmoviel").click(function(){
 			
@@ -305,7 +306,7 @@
 	</script>
 	<script type="text/javascript">
 	
-
+	//减少页号
 		
 		$("#editll").click(function(){
 			
@@ -323,28 +324,45 @@
 	
 	</script>
 	<script type="text/javascript">
-	
-	 function delete1 (id) {
-		
-	        if (confirm("确认要删除此条记录吗？")) {
-	            $.ajax({
-	               
-	                type: 'GET',
-	                url: "delete.edit", //要发送的后台地址
-	                data: 'id='+id,
-	                
-	                success: function (data) {
-	                	$("#cPage").html(data);
-	                 
-	                    },
-	                  dataType:"html"
-	                
-	            });
-	        }
-	    }
+		//删除页号
+	var bds = $("button[name='moviedeletename']");
+	for(var i = 0;i < bds.length;i++){
+		$(bds[i]).click(function(){
+			var id = $(this).attr("id");
+				
+			$.post(
+					"deletemovie.edit",{id1:id},function(data){
+						
+						$("#cPage").html(data);
+						
+					},"html"
+			
+			
+			);
+			
+		});
+	};
+	var emn = $("button[name='movieeditname']");
+	//编辑页面
+	for(var i = 0;i < emn.length;i++){
+		$(emn[i]).click(function(){
+			var id = $(this).attr("id");
+				
+			$.post(
+					"editmovie.edit",{id1:id},function(data){
+						
+						$("#cPage").html(data);
+						
+					},"html"
+			
+			
+			);
+			
+		});
+	};
 	 function edit (id) {
-	
-	        if (confirm("确认要修改这个页面")) {
+		//修改页面
+	        /* if (confirm("确认要修改这个页面")) {
 	            $.ajax({
 	               
 	                type: 'GET',
@@ -356,7 +374,7 @@
 	                    }
 	                
 	            });
-	        }
+	        } */
 	    }
 	
 	

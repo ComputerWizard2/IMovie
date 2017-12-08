@@ -10,4 +10,11 @@ public interface GetDataService {
 
 	// 删除电影的操作
 	public boolean deleteMovie(int id);
+
+	// 根据id找对象
+	public MovieTable findOne(int id);
+
+	// 跟新数据
+	public boolean updateMovie(MovieTable movieTable);
+
 }

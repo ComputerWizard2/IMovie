@@ -17,4 +17,13 @@ public interface MovieTableDao {
 	// 删除的数据
 	public boolean deleteDate(int id);
 
+	// 插入一条数据
+	public boolean insertData(MovieTable movieTable);
+
+	// 查询一个对象
+	public MovieTable findOne(int id);
+
+	// 更新数据
+	public boolean updateMovie(MovieTable movieTable);
+
 }
